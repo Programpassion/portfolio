@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Programpassion · AI Researcher & Creative Technologist</title>
+  
+  <!-- SEO & Social Graph Meta Tags -->
+  <meta name="description" content="Official portfolio of Programpassion - Deep Learning & AI Researcher, Creative WebGL Developer, and Systems Architect." />
+  <meta name="keywords" content="Programpassion, Deepfake Detection, AI Research, PyTorch, Three.js, WebGL, Creative Developer, Portfolio, GitHub Pages" />
+  <meta name="author" content="Programpassion" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Programpassion · Portfolio" />
+  <meta property="og:description" content="Next-level interactive developer portfolio with WebGL 3D graphics, deep learning research, and smooth animations." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://programpassion.github.io/" />
+
+  <!-- Google Fonts: Space Grotesk, Syne, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body class="bg-cyber-dark text-slate-100 scanlines bg-noise min-h-screen relative overflow-x-hidden selection:bg-cyber-cyan selection:text-black">
+
+  <!-- Laser Scroll Progress Bar -->
+  <div id="scroll-progress" class="fixed top-0 left-0 h-[3px] w-full bg-gradient-to-r from-cyber-cyan via-cyber-purple to-cyber-neon z-50 transform scale-x-0 origin-left"></div>
+
+  <!-- Fluid Custom Cursor -->
+  <div class="custom-cursor"></div>
+  <div class="custom-cursor-follower"></div>
+
+  <!-- Background Cyber Atmosphere Grids -->
+  <div class="fixed inset-0 cyber-grid pointer-events-none opacity-40 z-0"></div>
+  <div class="fixed top-[-20%] left-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyber-purple/10 blur-[140px] pointer-events-none z-0"></div>
+  <div class="fixed bottom-[-20%] right-[-10%] w-[50vw] h-[50vw] rounded-full bg-cyber-cyan/10 blur-[140px] pointer-events-none z-0"></div>
+
+  <!-- ================= TOP NAVIGATION HUD ================= -->
+  <header class="fixed top-4 left-0 right-0 z-40 px-4 sm:px-8 max-w-7xl mx-auto flex items-center justify-between">
+    <!-- Brand / Identifier -->
+    <a href="#hero" class="glass-panel px-4 py-2.5 rounded-full flex items-center space-x-3 group border border-white/10 hover:border-cyber-cyan/40 transition-all magnetic">
+      <div class="w-2.5 h-2.5 rounded-full bg-cyber-cyan radar-ping"></div>
+      <span class="font-mono text-sm tracking-wider font-bold text-white group-hover:text-cyber-cyan transition-colors">
+        PROGRAMPASSION<span class="text-cyber-cyan animate-pulse">_</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav Links -->
+    <nav class="hidden md:flex items-center space-x-1 glass-panel px-6 py-2 rounded-full border border-white/10">
+      <a href="#about" class="nav-link px-3.5 py-1.5 text-xs font-mono text-slate-400 hover:text-cyber-cyan transition-colors">ABOUT</a>
+      <a href="#projects" class="nav-link px-3.5 py-1.5 text-xs font-mono text-slate-400 hover:text-cyber-cyan transition-colors">PROJECTS</a>
+      <a href="#skills" class="nav-link px-3.5 py-1.5 text-xs font-mono text-slate-400 hover:text-cyber-cyan transition-colors">SKILLS</a>
+      <a href="#timeline" class="nav-link px-3.5 py-1.5 text-xs font-mono text-slate-400 hover:text-cyber-cyan transition-colors">TIMELINE</a>
+      <a href="#contact" class="nav-link px-3.5 py-1.5 text-xs font-mono text-slate-400 hover:text-cyber-cyan transition-colors">CONTACT</a>
+    </nav>
+
+    <!-- Actions: Sound Toggle & Terminal Trigger -->
+    <div class="flex items-center space-x-2">
+      <!-- Sound FX Toggle -->
+      <button id="sound-toggle" aria-label="Toggle audio effects" class="glass-panel px-3 py-2 rounded-full flex items-center space-x-2 text-xs font-mono text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan/40 transition-all magnetic">
+        <i id="sound-icon" data-lucide="volume-x" class="w-4 h-4 text-cyber-cyan"></i>
+        <span id="sound-status-text" class="hidden sm:inline">MUTED</span>
+      </button>
+
+      <!-- Open Terminal Button -->
+      <button class="open-terminal-btn glass-panel px-3 py-2 rounded-full flex items-center space-x-1.5 text-xs font-mono text-slate-300 hover:text-cyber-purple hover:border-cyber-purple/40 transition-all magnetic">
+        <i data-lucide="terminal" class="w-4 h-4 text-cyber-purple"></i>
+        <span class="hidden sm:inline">CLI</span>
+      </button>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobile-menu-btn" aria-label="Toggle navigation menu" class="md:hidden glass-panel p-2.5 rounded-full text-slate-300 hover:text-cyber-cyan">
+        <i data-lucide="menu" class="w-5 h-5"></i>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile Drawer -->
+  <div id="mobile-nav" class="hidden fixed inset-x-4 top-20 z-40 glass-panel-glow p-6 rounded-2xl flex flex-col space-y-4 md:hidden border border-cyber-cyan/30">
+    <a href="#about" class="mobile-nav-link text-sm font-mono text-slate-300 hover:text-cyber-cyan py-2 border-b border-white/5">01 // ABOUT</a>
+    <a href="#projects" class="mobile-nav-link text-sm font-mono text-slate-300 hover:text-cyber-cyan py-2 border-b border-white/5">02 // PROJECTS</a>
+    <a href="#skills" class="mobile-nav-link text-sm font-mono text-slate-300 hover:text-cyber-cyan py-2 border-b border-white/5">03 // SKILLS</a>
+    <a href="#timeline" class="mobile-nav-link text-sm font-mono text-slate-300 hover:text-cyber-cyan py-2 border-b border-white/5">04 // TIMELINE</a>
+    <a href="#contact" class="mobile-nav-link text-sm font-mono text-slate-300 hover:text-cyber-cyan py-2">05 // CONTACT</a>
+  </div>
+
+  <!-- ================= HERO SECTION (3D WEBGL) ================= -->
+  <section id="hero" class="relative w-full min-h-screen flex items-center justify-center pt-24 pb-16 px-6 overflow-hidden">
+    <!-- Three.js 3D WebGL Canvas Mount -->
+    <div id="hero-canvas-container" class="absolute inset-0 w-full h-full pointer-events-auto z-0 cursor-grab active:cursor-grabbing"></div>
+
+    <div class="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center pointer-events-none">
+      
+      <!-- Status Badge -->
+      <div class="glass-panel px-4 py-1.5 rounded-full border border-cyber-cyan/30 mb-8 inline-flex items-center space-x-2.5 pointer-events-auto shadow-neon-cyan animate-float">
+        <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-ping"></span>
+        <span class="text-xs font-mono tracking-widest text-cyber-cyan uppercase font-semibold">Available for AI Research & High-Impact Engineering</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h1 class="font-display font-black text-4xl sm:text-6xl md:text-8xl tracking-tight leading-none mb-6">
+        <span class="block text-white">ARCHITECTING</span>
+        <span class="block text-gradient-cyan glitch-text cursor-default pointer-events-auto" data-text="PROGRAMPASSION">PROGRAMPASSION</span>
+      </h1>
+
+      <!-- Subtitle Tagline -->
+      <p class="max-w-2xl text-slate-300 text-base sm:text-xl font-light leading-relaxed mb-10 pointer-events-auto">
+        Deep Learning & Forensic AI Researcher exploring synthetic media detection, paired with bleeding-edge 3D WebGL aesthetics and high-performance system architectures.
+      </p>
+
+      <!-- Action Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-4 pointer-events-auto">
+        <a href="#projects" class="magnetic px-8 py-4 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-neon text-black font-mono font-bold text-sm tracking-wider uppercase hover:shadow-neon-cyan transition-all transform hover:-translate-y-1 flex items-center space-x-2">
+          <span>Explore Projects</span>
+          <i data-lucide="arrow-down-right" class="w-4 h-4"></i>
+        </a>
+
+        <button class="open-terminal-btn magnetic px-7 py-4 rounded-xl glass-panel border border-cyber-purple/40 text-cyber-purple hover:text-white hover:bg-cyber-purple/20 font-mono font-bold text-sm tracking-wider uppercase transition-all transform hover:-translate-y-1 flex items-center space-x-2">
+          <i data-lucide="terminal" class="w-4 h-4"></i>
+          <span>Launch Terminal</span>
+        </button>
+
+        <a href="https://github.com/Programpassion" target="_blank" rel="noopener noreferrer" class="magnetic p-4 rounded-xl glass-panel border border-white/10 text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan/40 transition-all">
+          <i data-lucide="github" class="w-5 h-5"></i>
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="mt-16 flex flex-col items-center space-y-2 pointer-events-auto opacity-70 hover:opacity-100 transition-opacity">
+        <span class="text-[10px] font-mono tracking-widest text-slate-400">INITIALIZE SCROLL SEQUENCE</span>
+        <div class="w-5 h-9 rounded-full border-2 border-slate-600 flex items-start justify-center p-1">
+          <div class="w-1.5 h-2 bg-cyber-cyan rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= SYSTEM TELEMETRY HUD BAR ================= -->
+  <div class="w-full border-y border-white/10 bg-cyber-surface/60 backdrop-blur-md py-3 px-6 z-20">
+    <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-4 text-xs font-mono">
+      <div class="flex items-center space-x-4">
+        <span id="hud-active-section" class="text-cyber-cyan font-bold">LOC: [//OVERVIEW]</span>
+        <span class="text-slate-600">|</span>
+        <span id="hud-github-status" class="text-slate-400 flex items-center">
+          <span class="inline-block w-2 h-2 rounded-full bg-cyber-cyan mr-1.5"></span>
+          CONNECTING GITHUB TELEMETRY...
+        </span>
+      </div>
+
+      <div class="flex items-center space-x-6 text-slate-400">
+        <span class="hidden sm:inline">KERNEL: <span class="text-slate-200">v6.1-NODE</span></span>
+        <span id="hud-fps" class="text-cyber-neon font-bold">60 FPS</span>
+        <span id="hud-clock" class="text-slate-300">00:00:00 UTC</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= ABOUT / MISSION PILLARS ================= -->
+  <section id="about" class="animate-section py-28 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="section-header max-w-3xl mb-16">
+      <div class="inline-flex items-center space-x-2 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-3">
+        <i data-lucide="cpu" class="w-4 h-4"></i>
+        <span>01 // MISSION & ARCHITECTURE</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-display font-extrabold tracking-tight text-white mb-6">
+        Merging Deep Learning Research with <span class="text-gradient-cyan">Sensory Web Experiences</span>.
+      </h2>
+      <p class="text-slate-400 text-base sm:text-lg leading-relaxed font-light">
+        I engineer intelligent systems that bridge artificial intelligence simulation with modern creative computation. 
+        Whether uncovering synthetic manipulations in digital media or creating real-time 3D environments, my focus is on uncompromising precision, aesthetic depth, and clean code.
+      </p>
+    </div>
+
+    <!-- 3 Core Pillars -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <!-- Pillar 1 -->
+      <div class="animate-card tilt-card glass-panel p-8 rounded-2xl border border-white/10 relative overflow-hidden group">
+        <div class="card-glare"></div>
+        <div class="w-12 h-12 rounded-xl bg-cyber-cyan/10 border border-cyber-cyan/30 flex items-center justify-center text-cyber-cyan mb-6 group-hover:scale-110 transition-transform">
+          <i data-lucide="shield-alert" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white mb-3">Neural Forensics & AI</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          Investigating generative facial artifact anomalies, temporal inconsistencies, and deepfake verification through PyTorch deep neural networks.
+        </p>
+        <div class="font-mono text-xs text-cyber-cyan flex items-center space-x-1.5">
+          <span>SIMULATION & DETECTION</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </div>
+      </div>
+
+      <!-- Pillar 2 -->
+      <div class="animate-card tilt-card glass-panel p-8 rounded-2xl border border-white/10 relative overflow-hidden group">
+        <div class="card-glare"></div>
+        <div class="w-12 h-12 rounded-xl bg-cyber-purple/10 border border-cyber-purple/30 flex items-center justify-center text-cyber-purple mb-6 group-hover:scale-110 transition-transform">
+          <i data-lucide="sparkles" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white mb-3">Atmospheric Creative Web</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          Building cinematic web interactions inspired by dark fantasy worlds (Elden Ring) and modern cyber-editorial styling with WebGL, Three.js, and GSAP.
+        </p>
+        <div class="font-mono text-xs text-cyber-purple flex items-center space-x-1.5">
+          <span>IMMERSIVE 3D VISUALS</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </div>
+      </div>
+
+      <!-- Pillar 3 -->
+      <div class="animate-card tilt-card glass-panel p-8 rounded-2xl border border-white/10 relative overflow-hidden group">
+        <div class="card-glare"></div>
+        <div class="w-12 h-12 rounded-xl bg-cyber-neon/10 border border-cyber-neon/30 flex items-center justify-center text-cyber-neon mb-6 group-hover:scale-110 transition-transform">
+          <i data-lucide="layers" class="w-6 h-6"></i>
+        </div>
+        <h3 class="text-xl font-display font-bold text-white mb-3">High-Scale Architecture</h3>
+        <p class="text-slate-400 text-sm leading-relaxed mb-6">
+          Constructing reliable full-stack applications and event management infrastructures (Utsah Fest) capable of smooth multi-user operations.
+        </p>
+        <div class="font-mono text-xs text-cyber-neon flex items-center space-x-1.5">
+          <span>SCALABLE PLATFORMS</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= FEATURED PROJECTS SHOWCASE ================= -->
+  <section id="projects" class="animate-section py-28 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="section-header flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <div class="inline-flex items-center space-x-2 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-3">
+          <i data-lucide="folder-git-2" class="w-4 h-4"></i>
+          <span>02 // INDEXED REPOSITORIES & INNOVATION</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white">
+          Featured <span class="text-gradient-cyan">Engineering Works</span>
+        </h2>
+      </div>
+      <a href="https://github.com/Programpassion?tab=repositories" target="_blank" rel="noopener noreferrer" class="magnetic font-mono text-xs text-cyber-cyan hover:underline flex items-center space-x-2">
+        <span>VIEW ALL ON GITHUB</span>
+        <i data-lucide="external-link" class="w-4 h-4"></i>
+      </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      
+      <!-- Project 1: Deepfake Detection Research -->
+      <div class="animate-card tilt-card glass-panel rounded-3xl border border-white/10 p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between group hover:border-cyber-cyan/40 transition-colors">
+        <div class="card-glare"></div>
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyber-cyan/10 text-cyber-cyan border border-cyber-cyan/30">
+              AI / DEEP LEARNING SIMULATION
+            </span>
+            <a href="https://github.com/Programpassion/deepfake-detection-research" target="_blank" rel="noopener noreferrer" aria-label="View deepfake-detection-research repository" class="text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-6 h-6"></i>
+            </a>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-display font-bold text-white mb-4 group-hover:text-cyber-cyan transition-colors">
+            deepfake-detection-research
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
+            An advanced simulation project focused on forensic computer vision techniques to detect deepfake artifacts, neural manipulation boundaries, and synthesized facial features.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">PyTorch</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Computer Vision</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Neural Forensics</span>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">STATUS: ACTIVE RESEARCH</span>
+          <a href="https://github.com/Programpassion/deepfake-detection-research" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-cyber-cyan font-bold flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+            <span>EXPLORE REPO</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 2: EldenRing Aesthetics Website -->
+      <div class="animate-card tilt-card glass-panel rounded-3xl border border-white/10 p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between group hover:border-cyber-purple/40 transition-colors">
+        <div class="card-glare"></div>
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyber-purple/10 text-cyber-purple border border-cyber-purple/30">
+              CREATIVE WEB & DARK FANTASY UI
+            </span>
+            <a href="https://github.com/Programpassion/EldenRing" target="_blank" rel="noopener noreferrer" aria-label="View EldenRing repository" class="text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-6 h-6"></i>
+            </a>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-display font-bold text-white mb-4 group-hover:text-cyber-purple transition-colors">
+            EldenRing Visual Showcase
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
+            An atmospheric, dark fantasy web experience capturing the majestic gloom and grand art direction of Elden Ring. Implements rich soundscapes, gold particle shaders, and immersive layout.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">JavaScript</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">WebGL / 3D</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">CSS Shaders</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Atmospheric Audio</span>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">AESTHETIC: SENSORY GLOW</span>
+          <a href="https://github.com/Programpassion/EldenRing" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-cyber-purple font-bold flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+            <span>EXPLORE REPO</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 3: Utsah Fest Architecture -->
+      <div class="animate-card tilt-card glass-panel rounded-3xl border border-white/10 p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between group hover:border-cyber-neon/40 transition-colors">
+        <div class="card-glare"></div>
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-cyber-neon/10 text-cyber-neon border border-cyber-neon/30">
+              EVENT PLATFORM & ARCHITECTURE
+            </span>
+            <a href="https://github.com/Programpassion/utsah2026" target="_blank" rel="noopener noreferrer" aria-label="View utsah2026 repository" class="text-slate-400 hover:text-white transition-colors">
+              <i data-lucide="github" class="w-6 h-6"></i>
+            </a>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-display font-bold text-white mb-4 group-hover:text-cyber-neon transition-colors">
+            Utsah Fest 2026 Engine
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
+            Comprehensive digital infrastructure for university and cultural fest operations. Manages registrations, event scheduling, dynamic leaderboards, and automated participant communications.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Python</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Web Backend</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Database Design</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Event Portal</span>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">SCALE: MULTI-TIER</span>
+          <a href="https://github.com/Programpassion/utsah2026" target="_blank" rel="noopener noreferrer" class="font-mono text-xs text-cyber-neon font-bold flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+            <span>EXPLORE REPO</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Project 4: Neural Vision Synthesis Lab -->
+      <div class="animate-card tilt-card glass-panel rounded-3xl border border-white/10 p-8 sm:p-10 relative overflow-hidden flex flex-col justify-between group hover:border-emerald-400/40 transition-colors">
+        <div class="card-glare"></div>
+        <div>
+          <div class="flex items-center justify-between mb-6">
+            <span class="px-3 py-1 rounded-full text-xs font-mono bg-emerald-400/10 text-emerald-400 border border-emerald-400/30">
+              RESEARCH & EXPERIMENTAL
+            </span>
+            <div class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></div>
+          </div>
+
+          <h3 class="text-2xl sm:text-3xl font-display font-bold text-white mb-4 group-hover:text-emerald-400 transition-colors">
+            Neural Vision & Forensic Suite
+          </h3>
+          <p class="text-slate-300 text-sm sm:text-base leading-relaxed mb-6 font-light">
+            Experimental laboratory combining image frequency domain analysis (FFT), convolutional autoencoders, and attention maps to expose GAN/diffusion tampering.
+          </p>
+
+          <div class="flex flex-wrap gap-2 mb-8">
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">PyTorch</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">NumPy / SciPy</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">OpenCV</span>
+            <span class="px-2.5 py-1 rounded-lg text-xs font-mono bg-slate-800/80 text-slate-300">Spectral Analysis</span>
+          </div>
+        </div>
+
+        <div class="pt-6 border-t border-white/10 flex items-center justify-between">
+          <span class="text-xs font-mono text-slate-400">STATUS: PROTOTYPING</span>
+          <button class="open-terminal-btn font-mono text-xs text-emerald-400 font-bold flex items-center space-x-1.5 group-hover:translate-x-1 transition-transform">
+            <span>INSPECT TELEMETRY</span>
+            <i data-lucide="terminal" class="w-4 h-4"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE TECH MATRIX ================= -->
+  <section id="skills" class="animate-section py-28 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="section-header max-w-3xl mb-12">
+      <div class="inline-flex items-center space-x-2 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-3">
+        <i data-lucide="code-2" class="w-4 h-4"></i>
+        <span>03 // SKILL CONSTELLATION</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white mb-6">
+        Technical <span class="text-gradient-cyan">Arsenal</span>
+      </h2>
+      <p class="text-slate-400 text-sm sm:text-base">
+        A curated matrix of languages, machine learning frameworks, creative web tools, and infrastructure paradigms leveraged in production and research.
+      </p>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex flex-wrap gap-2 mb-10 pb-4 border-b border-white/10">
+      <button class="skill-tab px-5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase border border-cyber-cyan bg-cyber-cyan/10 text-cyber-cyan transition-all" data-category="all">
+        [ALL SUBSYSTEMS]
+      </button>
+      <button class="skill-tab px-5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase border border-transparent text-slate-400 hover:text-white transition-all" data-category="ai">
+        AI & MACHINE LEARNING
+      </button>
+      <button class="skill-tab px-5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase border border-transparent text-slate-400 hover:text-white transition-all" data-category="creative">
+        CREATIVE WEB & 3D
+      </button>
+      <button class="skill-tab px-5 py-2 rounded-xl text-xs font-mono font-bold tracking-wider uppercase border border-transparent text-slate-400 hover:text-white transition-all" data-category="backend">
+        SYSTEMS & BACKEND
+      </button>
+    </div>
+
+    <!-- Skills Grid -->
+    <div id="skills-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Python -->
+      <div class="skill-item tilt-card glass-panel p-6 rounded-2xl border border-white/10 flex items-start space-x-4 transition-all" data-category="ai">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0">
+          <i data-lucide="terminal-square" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-display font-bold text-white text-base">Python 3</h4>
+            <span class="font-mono text-xs text-cyber-cyan">95%</span>
+          </div>
+          <p class="text-slate-400 text-xs mb-3">Core language for AI models, deepfake pipelines & scientific computing.</p>
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-cyber-cyan rounded-full w-[95%]"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- PyTorch & CV -->
+      <div class="skill-item tilt-card glass-panel p-6 rounded-2xl border border-white/10 flex items-start space-x-4 transition-all" data-category="ai">
+        <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/30 flex items-center justify-center text-orange-400 shrink-0">
+          <i data-lucide="brain-circuit" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-display font-bold text-white text-base">PyTorch & CV</h4>
+            <span class="font-mono text-xs text-orange-400">90%</span>
+          </div>
+          <p class="text-slate-400 text-xs mb-3">CNNs, Vision Transformers, spatial forensics, frequency domain analysis.</p>
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-orange-400 rounded-full w-[90%]"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- JavaScript & WebGL -->
+      <div class="skill-item tilt-card glass-panel p-6 rounded-2xl border border-white/10 flex items-start space-x-4 transition-all" data-category="creative">
+        <div class="w-12 h-12 rounded-xl bg-yellow-500/10 border border-yellow-500/30 flex items-center justify-center text-yellow-400 shrink-0">
+          <i data-lucide="box" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-display font-bold text-white text-base">Three.js & WebGL</h4>
+            <span class="font-mono text-xs text-yellow-400">88%</span>
+          </div>
+          <p class="text-slate-400 text-xs mb-3">3D scenes, custom particle systems, shader materials, interactive camera physics.</p>
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-yellow-400 rounded-full w-[88%]"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GSAP & Lenis -->
+      <div class="skill-item tilt-card glass-panel p-6 rounded-2xl border border-white/10 flex items-start space-x-4 transition-all" data-category="creative">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0">
+          <i data-lucide="sparkle" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-display font-bold text-white text-base">GSAP & Kinetic Motion</h4>
+            <span class="font-mono text-xs text-emerald-400">92%</span>
+          </div>
+          <p class="text-slate-400 text-xs mb-3">ScrollTrigger choreography, timeline sequencing, smooth inertia physics.</p>
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-emerald-400 rounded-full w-[92%]"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Backend & Systems -->
+      <div class="skill-item tilt-card glass-panel p-6 rounded-2xl border border-white/10 flex items-start space-x-4 transition-all" data-category="backend">
+        <div class="w-12 h-12 rounded-xl bg-purple-500/10 border border-purple-500/30 flex items-center justify-center text-purple-400 shrink-0">
+          <i data-lucide="server" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-display font-bold text-white text-base">Systems & REST APIs</h4>
+            <span class="font-mono text-xs text-purple-400">86%</span>
+          </div>
+          <p class="text-slate-400 text-xs mb-3">FastAPI, Express, microservices, secure authentication & databases.</p>
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-purple-400 rounded-full w-[86%]"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Git & CI/CD -->
+      <div class="skill-item tilt-card glass-panel p-6 rounded-2xl border border-white/10 flex items-start space-x-4 transition-all" data-category="backend">
+        <div class="w-12 h-12 rounded-xl bg-rose-500/10 border border-rose-500/30 flex items-center justify-center text-rose-400 shrink-0">
+          <i data-lucide="git-branch" class="w-6 h-6"></i>
+        </div>
+        <div class="flex-1">
+          <div class="flex items-center justify-between mb-1">
+            <h4 class="font-display font-bold text-white text-base">Git & GitHub Actions</h4>
+            <span class="font-mono text-xs text-rose-400">90%</span>
+          </div>
+          <p class="text-slate-400 text-xs mb-3">Version control, automated pipelines, GitHub Pages deployment workflows.</p>
+          <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden">
+            <div class="h-full bg-rose-400 rounded-full w-[90%]"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= RESEARCH & MILESTONE TIMELINE ================= -->
+  <section id="timeline" class="animate-section py-28 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="section-header max-w-3xl mb-16">
+      <div class="inline-flex items-center space-x-2 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-3">
+        <i data-lucide="milestone" class="w-4 h-4"></i>
+        <span>04 // CHRONOLOGY & EVOLUTION</span>
+      </div>
+      <h2 class="text-3xl sm:text-5xl font-display font-extrabold text-white mb-6">
+        Milestones & <span class="text-gradient-cyan">Research Trajectory</span>
+      </h2>
+    </div>
+
+    <div class="relative border-l-2 border-cyber-cyan/30 ml-4 sm:ml-8 pl-8 sm:pl-12 space-y-12">
+      
+      <!-- Node 1 -->
+      <div class="relative group">
+        <div class="absolute -left-[41px] sm:-left-[57px] top-1.5 w-6 h-6 rounded-full bg-cyber-dark border-2 border-cyber-cyan flex items-center justify-center group-hover:scale-125 transition-transform">
+          <div class="w-2 h-2 rounded-full bg-cyber-cyan"></div>
+        </div>
+        <span class="font-mono text-xs text-cyber-cyan font-bold tracking-wider">2026 // CURRENT</span>
+        <h3 class="text-xl font-display font-bold text-white mt-1 mb-2">Deepfake Artifact Detection Simulation</h3>
+        <p class="text-slate-400 text-sm max-w-2xl leading-relaxed">
+          Architecting experimental deep learning simulations to expose subtle generative flaws in synthetic video datasets. Publishing research methodology and reproducible code.
+        </p>
+      </div>
+
+      <!-- Node 2 -->
+      <div class="relative group">
+        <div class="absolute -left-[41px] sm:-left-[57px] top-1.5 w-6 h-6 rounded-full bg-cyber-dark border-2 border-cyber-purple flex items-center justify-center group-hover:scale-125 transition-transform">
+          <div class="w-2 h-2 rounded-full bg-cyber-purple"></div>
+        </div>
+        <span class="font-mono text-xs text-cyber-purple font-bold tracking-wider">2025 // FEST DEPLOYMENT</span>
+        <h3 class="text-xl font-display font-bold text-white mt-1 mb-2">Utsah Fest Platform Engineering</h3>
+        <p class="text-slate-400 text-sm max-w-2xl leading-relaxed">
+          Spearheaded the technical architecture for Utsah 2026, implementing real-time event registrations, scheduling tools, and community portal services.
+        </p>
+      </div>
+
+      <!-- Node 3 -->
+      <div class="relative group">
+        <div class="absolute -left-[41px] sm:-left-[57px] top-1.5 w-6 h-6 rounded-full bg-cyber-dark border-2 border-yellow-400 flex items-center justify-center group-hover:scale-125 transition-transform">
+          <div class="w-2 h-2 rounded-full bg-yellow-400"></div>
+        </div>
+        <span class="font-mono text-xs text-yellow-400 font-bold tracking-wider">2024 // CREATIVE LAB</span>
+        <h3 class="text-xl font-display font-bold text-white mt-1 mb-2">Elden Ring Atmospheric WebGL Experience</h3>
+        <p class="text-slate-400 text-sm max-w-2xl leading-relaxed">
+          Researched dark fantasy interactive design aesthetics, experimenting with particle dynamics, gold specular lighting, and auditory feedback loops on the web.
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= LIVE GITHUB ECOSYSTEM ================= -->
+  <section class="animate-section py-20 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="glass-panel-glow p-8 sm:p-12 rounded-3xl border border-cyber-cyan/30 flex flex-col lg:flex-row items-center justify-between gap-8">
+      <div>
+        <div class="inline-flex items-center space-x-2 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-2">
+          <i data-lucide="activity" class="w-4 h-4"></i>
+          <span>LIVE TELEMETRY STREAM</span>
+        </div>
+        <h3 class="text-2xl sm:text-4xl font-display font-bold text-white mb-2">
+          Synced with <span class="text-cyber-cyan">github.com/Programpassion</span>
+        </h3>
+        <p class="text-slate-400 text-sm max-w-xl">
+          Real-time statistics queried directly via GitHub REST APIs. Every commit, research prototype, and release tracked transparently.
+        </p>
+      </div>
+
+      <div class="flex items-center space-x-6 sm:space-x-10">
+        <div class="text-center">
+          <div id="stat-repos" class="font-mono text-4xl sm:text-5xl font-extrabold text-cyber-cyan">4</div>
+          <div class="font-mono text-xs text-slate-400 uppercase mt-1">Public Repos</div>
+        </div>
+        <div class="w-px h-12 bg-white/10"></div>
+        <div class="text-center">
+          <div id="stat-followers" class="font-mono text-4xl sm:text-5xl font-extrabold text-cyber-purple">2</div>
+          <div class="font-mono text-xs text-slate-400 uppercase mt-1">Followers</div>
+        </div>
+        <div class="w-px h-12 bg-white/10"></div>
+        <a href="https://github.com/Programpassion" target="_blank" rel="noopener noreferrer" class="magnetic px-6 py-3 rounded-xl bg-white/10 hover:bg-white/20 text-white font-mono text-xs font-bold flex items-center space-x-2 border border-white/10 transition-colors">
+          <span>VISIT PROFILE</span>
+          <i data-lucide="external-link" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CONTACT COMMAND CENTER ================= -->
+  <section id="contact" class="animate-section py-28 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+      
+      <!-- Contact Info -->
+      <div>
+        <div class="inline-flex items-center space-x-2 text-cyber-cyan font-mono text-xs tracking-widest uppercase mb-3">
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>05 // TRANSMISSION TERMINAL</span>
+        </div>
+        <h2 class="text-3xl sm:text-6xl font-display font-extrabold text-white mb-6">
+          Let's Build Something <span class="text-gradient-cyan">Extraordinary</span>.
+        </h2>
+        <p class="text-slate-300 text-base sm:text-lg font-light leading-relaxed mb-8">
+          Interested in collaborating on AI research, computer vision simulations, creative WebGL projects, or high-scale systems? Reach out anytime.
+        </p>
+
+        <div class="space-y-4 mb-8 font-mono text-sm">
+          <button id="copy-email-btn" class="glass-panel px-5 py-3 rounded-xl border border-white/10 text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan/40 transition-all flex items-center space-x-3 w-full sm:w-auto">
+            <i data-lucide="copy" class="w-4 h-4 text-cyber-cyan"></i>
+            <span>COPY DIRECT DISPATCH ADDRESS</span>
+          </button>
+        </div>
+
+        <!-- Social Grid -->
+        <div class="flex items-center space-x-4">
+          <a href="https://github.com/Programpassion" target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" class="p-3.5 rounded-xl glass-panel border border-white/10 text-slate-300 hover:text-cyber-cyan hover:border-cyber-cyan/40 transition-all magnetic">
+            <i data-lucide="github" class="w-5 h-5"></i>
+          </a>
+          <button class="open-terminal-btn p-3.5 rounded-xl glass-panel border border-white/10 text-slate-300 hover:text-cyber-purple hover:border-cyber-purple/40 transition-all magnetic" title="Launch Terminal HUD">
+            <i data-lucide="terminal" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="glass-panel p-8 sm:p-10 rounded-3xl border border-white/10 relative">
+        <div class="text-xs font-mono text-cyber-cyan uppercase tracking-widest mb-6 flex items-center space-x-2">
+          <span class="w-2 h-2 rounded-full bg-cyber-cyan animate-pulse"></span>
+          <span>SECURE DIRECT TRANSMISSION</span>
+        </div>
+
+        <form id="contact-form" class="space-y-5">
+          <div>
+            <label for="name-input" class="block font-mono text-xs text-slate-400 mb-2">CODENAME / IDENTITY</label>
+            <input id="name-input" type="text" required placeholder="Dr. Alan Turing" class="w-full bg-cyber-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyber-cyan transition-colors" />
+          </div>
+
+          <div>
+            <label for="email-input" class="block font-mono text-xs text-slate-400 mb-2">COMMUNICATION FREQUENCY (EMAIL)</label>
+            <input id="email-input" type="email" required placeholder="turing@bletchley.dev" class="w-full bg-cyber-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyber-cyan transition-colors" />
+          </div>
+
+          <div>
+            <label for="message-input" class="block font-mono text-xs text-slate-400 mb-2">PAYLOAD (MESSAGE)</label>
+            <textarea id="message-input" required rows="4" placeholder="Let's discuss deep learning forensics or collaborate on a high-impact project..." class="w-full bg-cyber-dark/80 border border-white/10 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-cyber-cyan transition-colors resize-none"></textarea>
+          </div>
+
+          <button type="submit" class="magnetic w-full py-4 rounded-xl bg-gradient-to-r from-cyber-cyan to-cyber-neon text-black font-mono font-bold text-sm tracking-wider uppercase hover:shadow-neon-cyan transition-all flex items-center justify-center space-x-2">
+            <span>Transmit Message</span>
+            <i data-lucide="send" class="w-4 h-4"></i>
+          </button>
+        </form>
+
+        <div id="form-status" class="hidden mt-4 text-xs font-mono text-center"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= RETRO CYBER TERMINAL MODAL ================= -->
+  <div id="terminal-modal" class="hidden fixed bottom-8 right-8 z-50 w-full max-w-xl glass-panel-glow rounded-2xl border border-cyber-cyan/40 shadow-2xl flex-col overflow-hidden animate-float">
+    <!-- Header -->
+    <div id="terminal-header" class="bg-cyber-surface/90 px-4 py-3 border-b border-white/10 flex items-center justify-between cursor-move select-none">
+      <div class="flex items-center space-x-2">
+        <button id="terminal-close-btn" class="w-3 h-3 rounded-full bg-rose-500 hover:opacity-80"></button>
+        <button id="terminal-min-btn" class="w-3 h-3 rounded-full bg-yellow-500 hover:opacity-80"></button>
+        <div class="w-3 h-3 rounded-full bg-emerald-500"></div>
+        <span class="font-mono text-xs text-slate-300 ml-3 font-semibold">terminal@programpassion:~</span>
+      </div>
+      <span class="font-mono text-[10px] text-cyber-cyan bg-cyber-cyan/10 px-2 py-0.5 rounded">ZSH // V8</span>
+    </div>
+
+    <!-- Body -->
+    <div id="terminal-output" class="p-4 h-72 overflow-y-auto font-mono text-xs text-slate-300 space-y-2 select-text"></div>
+
+    <!-- Input -->
+    <div class="p-3 bg-cyber-dark/90 border-t border-white/10 flex items-center space-x-2 font-mono text-xs">
+      <span class="text-cyber-cyan font-bold">visitor@programpassion:~$</span>
+      <input id="terminal-input" type="text" autofocus autocomplete="off" spellcheck="false" class="flex-1 bg-transparent text-white focus:outline-none" placeholder="type 'help'..." />
+    </div>
+  </div>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="border-t border-white/10 py-10 px-6 max-w-7xl mx-auto relative z-10">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-slate-400">
+      <div>
+        © 2026 <span class="text-white font-bold">PROGRAMPASSION</span>. ALL RIGHTS RESERVED.
+      </div>
+      <div class="flex items-center space-x-6">
+        <a href="#hero" class="hover:text-cyber-cyan transition-colors">BACK TO APEX ↑</a>
+        <a href="https://github.com/Programpassion" target="_blank" rel="noopener noreferrer" class="hover:text-cyber-cyan transition-colors">GITHUB</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script type="module" src="./src/scripts/main.js"></script>
+</body>
+</html>
