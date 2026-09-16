@@ -6,28 +6,40 @@ import { initScrollAnimations } from './animations/scrollAnimations.js';
 import { initCustomCursor } from './components/cursor.js';
 import { initTerminal } from './components/terminal.js';
 import { initGitHubTelemetry } from './components/githubApi.js';
+import { initThemeSwitcher } from './components/themeSwitcher.js';
+import { initProjectEstimator } from './components/estimator.js';
+import { initCaseStudyDrawer } from './components/caseStudies.js';
 import { sounds } from './audio/soundEffects.js';
 
 document.addEventListener('DOMContentLoaded', () => {
   // 1. Initialize Lucide icons
   createIcons({ icons });
 
-  // 2. Initialize 3D WebGL Canvas
+  // 2. Initialize Theme Switcher
+  initThemeSwitcher();
+
+  // 3. Initialize 3D WebGL Canvas
   initHeroCanvas();
 
-  // 3. Initialize Smooth Scrolling & GSAP Animations
+  // 4. Initialize Smooth Scrolling & GSAP Animations
   initScrollAnimations();
 
-  // 4. Initialize Fluid Magnetic Cursor
+  // 5. Initialize Fluid Magnetic Cursor
   initCustomCursor();
 
-  // 5. Initialize Interactive Terminal
+  // 6. Initialize Interactive Terminal
   initTerminal();
 
-  // 6. Fetch GitHub Live Telemetry
+  // 7. Initialize GitHub Live Telemetry
   initGitHubTelemetry();
 
-  // 7. Sound Toggle Handler
+  // 8. Initialize Project Estimator
+  initProjectEstimator();
+
+  // 9. Initialize Case Study Slide-Over Drawer
+  initCaseStudyDrawer();
+
+  // 10. Sound Toggle Handler
   const soundToggleBtn = document.getElementById('sound-toggle');
   const soundIcon = document.getElementById('sound-icon');
   const soundStatusText = document.getElementById('sound-status-text');
@@ -50,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 8. Mobile Navigation Drawer
+  // 11. Mobile Navigation Drawer
   const mobileMenuBtn = document.getElementById('mobile-menu-btn');
   const mobileNav = document.getElementById('mobile-nav');
   const mobileNavLinks = document.querySelectorAll('.mobile-nav-link');
@@ -69,7 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 9. Skill Matrix Filter Tabs
+  // 12. FAQ Accordion Click Handlers
+  const faqItems = document.querySelectorAll('.faq-item');
+  faqItems.forEach((item) => {
+    item.addEventListener('click', () => {
+      sounds.playClick();
+      const isActive = item.classList.contains('active');
+      
+      // Close other accordion items
+      faqItems.forEach((other) => other.classList.remove('active'));
+
+      if (!isActive) {
+        item.classList.add('active');
+      }
+    });
+  });
+
+  // 13. Skill Matrix Filter Tabs
   const skillTabs = document.querySelectorAll('.skill-tab');
   const skillCards = document.querySelectorAll('.skill-item');
 
@@ -100,7 +128,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
-  // 10. Interactive Contact Form with Confetti Fireworks
+  // 14. Interactive Contact Form with Confetti Fireworks
   const contactForm = document.getElementById('contact-form');
   const formStatus = document.getElementById('form-status');
   const copyEmailBtn = document.getElementById('copy-email-btn');
@@ -112,8 +140,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
       // Fire festive cyber confetti
       confetti({
-        particleCount: 80,
-        spread: 70,
+        particleCount: 100,
+        spread: 80,
         origin: { y: 0.7 },
         colors: ['#00f5d4', '#a855f7', '#38bdf8', '#ffffff']
       });
@@ -146,7 +174,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // 11. Real-time Telemetry Loop (Clock, FPS, Latency)
+  // 15. Real-time Telemetry Loop (Clock, FPS, Latency)
   const clockElement = document.getElementById('hud-clock');
   const fpsElement = document.getElementById('hud-fps');
 
